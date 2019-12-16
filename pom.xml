@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>me.study</groupId>
-    <artifactId>demo-inflearn-rest-api</artifactId>
+    <artifactId>rest-api-with-spring</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>demo</name>
     <description>Demo project for Spring Boot</description>

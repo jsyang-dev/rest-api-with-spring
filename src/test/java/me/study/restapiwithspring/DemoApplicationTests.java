@@ -1,4 +1,4 @@
-package me.study.demoinflearnrestapi;
+package me.study.restapiwithspring;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
