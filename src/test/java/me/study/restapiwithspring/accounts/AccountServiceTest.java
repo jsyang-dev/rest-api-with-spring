@@ -1,5 +1,6 @@
 package me.study.restapiwithspring.accounts;
 
+import me.study.restapiwithspring.common.AppProperties;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -12,8 +13,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.fail;
@@ -37,24 +36,27 @@ public class AccountServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private AppProperties appProperties;
+
     @Test
     public void findByUsername() {
-        // Given
-        String username = "mycat83@gmail.com";
-        String password = "123456";
-        Account account = Account.builder()
-                .email(username)
-                .password(password)
-                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-                .build();
-        this.accountService.saveAccount(account);
+//        // Given
+//        String username = "mycat83@gmail.com";
+//        String password = "123456";
+//        Account account = Account.builder()
+//                .email(username)
+//                .password(password)
+//                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
+//                .build();
+//        this.accountService.saveAccount(account);
 
         // When
         UserDetailsService userDetailsService = accountService;
-        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(appProperties.getUserUsername());
 
         // Then userDetails.getPassword()
-        assertThat(this.passwordEncoder.matches(password, userDetails.getPassword())).isTrue();
+        assertThat(this.passwordEncoder.matches(appProperties.getUserPassword(), userDetails.getPassword())).isTrue();
     }
 
     @Test(expected = UsernameNotFoundException.class)
@@ -78,7 +80,7 @@ public class AccountServiceTest {
     @Test
     public void findByUsernameFail3() {
         // Expected
-        String username = "random@gmail.com";
+        String username = "random@email.com";
         expectedException.expect(UsernameNotFoundException.class);
         expectedException.expectMessage(containsString(username));
 
