@@ -41,21 +41,11 @@ public class AccountServiceTest {
 
     @Test
     public void findByUsername() {
-//        // Given
-//        String username = "mycat83@gmail.com";
-//        String password = "123456";
-//        Account account = Account.builder()
-//                .email(username)
-//                .password(password)
-//                .roles(Set.of(AccountRole.ADMIN, AccountRole.USER))
-//                .build();
-//        this.accountService.saveAccount(account);
-
         // When
         UserDetailsService userDetailsService = accountService;
         UserDetails userDetails = userDetailsService.loadUserByUsername(appProperties.getUserUsername());
 
-        // Then userDetails.getPassword()
+        // Then
         assertThat(this.passwordEncoder.matches(appProperties.getUserPassword(), userDetails.getPassword())).isTrue();
     }
 
