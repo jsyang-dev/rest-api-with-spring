@@ -2,7 +2,7 @@ package me.study.restapiwithspring.config;
 
 import me.study.restapiwithspring.accounts.AccountService;
 import me.study.restapiwithspring.common.AppProperties;
-import me.study.restapiwithspring.common.BaseControllerTest;
+import me.study.restapiwithspring.common.BaseTest;
 import me.study.restapiwithspring.common.TestDescription;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AuthServerConfigTest extends BaseControllerTest {
+public class AuthServerConfigTest extends BaseTest {
 
     @Autowired
     AccountService accountService;
